@@ -2,180 +2,447 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>مداري | الموقع تحت الإنشاء</title>
-  <meta name="description" content="موقع مداري - madari.com.sa - قريبًا">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>مداري | الربط التجاري بين الشركات السعودية والدولية</title>
+  <meta name="description" content="مداري للربط التجاري الدولي تساعد الشركات السعودية والدولية في البحث والاستقطاب والتأهيل وترتيب الاجتماعات ودعم دخول الأسواق وتطوير الأعمال.">
+  <meta name="keywords" content="الربط التجاري الدولي, الربط التجاري بين الشركات, دخول السوق السعودي, تطوير الأعمال في السعودية, شركاء تجاريين في السعودية, Business Development Saudi Arabia, Market Entry Saudi Arabia">
+  <link rel="canonical" href="https://madari.com.sa/">
+  <link rel="alternate" hreflang="ar" href="https://madari.com.sa/">
+  <link rel="alternate" hreflang="en" href="https://madari.com.sa/en/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="مداري | الربط التجاري بين الشركات السعودية والدولية">
+  <meta property="og:description" content="من السوق السعودي إلى العالم، ومن العالم إلى السوق السعودي.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1784637729389-f24e1d2a8b22?auto=format&fit=crop&w=1200&q=75">
+  <meta property="og:locale" content="ar_SA">
+  <meta name="theme-color" content="#050E36">
+  <link rel="icon" href="assets/img/logo-mark.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #0b1020;
-      --bg-2: #121a33;
-      --text: #eef1f8;
-      --muted: #9aa4bf;
-      --accent: #3fb6a8;
-      --accent-2: #f2b84b;
-      --ring: rgba(255, 255, 255, 0.08);
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html, body { height: 100%; }
-
-    body {
-      font-family: "Tajawal", system-ui, sans-serif;
-      background: radial-gradient(ellipse at top, var(--bg-2), var(--bg) 70%);
-      color: var(--text);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      overflow-x: hidden;
-      padding: 24px 16px;
-    }
-
-    main {
-      text-align: center;
-      max-width: 640px;
-      width: 100%;
-    }
-
-    /* المدار */
-    .orbit {
-      position: relative;
-      width: 220px;
-      height: 220px;
-      margin: 0 auto 40px;
-    }
-
-    .ring {
-      position: absolute;
-      inset: 0;
-      border: 1px solid var(--ring);
-      border-radius: 50%;
-    }
-
-    .ring.r2 { inset: 30px; }
-    .ring.r3 { inset: 60px; }
-
-    .core {
-      position: absolute;
-      inset: 85px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), #2a7f9e);
-      box-shadow: 0 0 40px rgba(63, 182, 168, 0.45);
-    }
-
-    .spin {
-      position: absolute;
-      inset: 0;
-      animation: spin 12s linear infinite;
-    }
-
-    .spin.s2 { inset: 30px; animation-duration: 8s; animation-direction: reverse; }
-    .spin.s3 { inset: 60px; animation-duration: 5s; }
-
-    .planet {
-      position: absolute;
-      top: -6px;
-      left: 50%;
-      width: 12px;
-      height: 12px;
-      margin-left: -6px;
-      border-radius: 50%;
-      background: var(--accent-2);
-      box-shadow: 0 0 14px var(--accent-2);
-    }
-
-    .s2 .planet { width: 9px; height: 9px; margin-left: -4.5px; top: -4.5px; background: var(--accent); box-shadow: 0 0 12px var(--accent); }
-    .s3 .planet { width: 7px; height: 7px; margin-left: -3.5px; top: -3.5px; background: #fff; box-shadow: 0 0 10px #fff; }
-
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    h1 {
-      font-size: clamp(2.8rem, 9vw, 4.2rem);
-      font-weight: 800;
-      letter-spacing: -0.5px;
-      margin-bottom: 8px;
-    }
-
-    .domain {
-      color: var(--muted);
-      font-size: 1rem;
-      direction: ltr;
-      margin-bottom: 32px;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 18px;
-      border: 1px solid rgba(242, 184, 75, 0.35);
-      background: rgba(242, 184, 75, 0.08);
-      color: var(--accent-2);
-      border-radius: 999px;
-      font-weight: 700;
-      font-size: 0.95rem;
-      margin-bottom: 20px;
-    }
-
-    .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--accent-2);
-      animation: pulse 1.6s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.35; transform: scale(0.7); }
-    }
-
-    p.lead {
-      font-size: 1.2rem;
-      line-height: 1.9;
-      color: var(--muted);
-    }
-
-    footer {
-      margin-top: 56px;
-      color: var(--muted);
-      font-size: 0.85rem;
-      opacity: 0.7;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .spin, .dot { animation: none; }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@500;600;700&family=Inter:wght@400;500;600&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
-  <main>
-    <div class="orbit" aria-hidden="true">
-      <div class="ring"></div>
-      <div class="ring r2"></div>
-      <div class="ring r3"></div>
-      <div class="core"></div>
-      <div class="spin"><span class="planet"></span></div>
-      <div class="spin s2"><span class="planet"></span></div>
-      <div class="spin s3"><span class="planet"></span></div>
+<body data-page="index">
+<div id="site-header"></div>
+
+<main>
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="hero-media">
+      <video data-autoplay autoplay muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1784637729389-f24e1d2a8b22?auto=format&fit=crop&w=1800&q=70">
+        <source src="https://assets.mixkit.co/videos/49845/49845-720.mp4" type="video/mp4">
+      </video>
     </div>
+    <div class="map-bg"><canvas data-worldmap data-dot-alpha="0.22"></canvas></div>
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <div class="hero-tagline reveal"><i></i> مداري للربط التجاري بين الشركات المحلية والدولية</div>
+        <h1 class="display reveal reveal-d1">من السوق السعودي إلى العالم،<span class="accent">ومن العالم إلى السوق السعودي.</span></h1>
+        <p class="lead reveal reveal-d2">مداري تربط الشركات السعودية بالشركات الدولية، وتدعم الشركات العالمية في الوصول إلى الفرص المناسبة في السوق السعودي.</p>
+        <div class="btn-row reveal reveal-d3">
+          <a class="btn btn-gold" href="services.html">اكتشف خدماتنا <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a>
+          <a class="btn btn-outline light" href="contact.html#request">ابدأ مشروعك معنا</a>
+          <a class="btn-link" href="contact.html">تواصل معنا</a>
+        </div>
+      </div>
+      <div class="globe-wrap reveal reveal-d2" aria-hidden="true">
+        <span class="orbit-ring"></span>
+        <canvas data-globe></canvas>
+      </div>
+    </div>
+    <div class="hero-foot">
+      <div class="container">
+        <span><b>01</b> البحث والاستقطاب</span>
+        <span><b>02</b> التأهيل والتواصل</span>
+        <span><b>03</b> الاجتماعات والمتابعة</span>
+        <span class="scroll-cue" aria-hidden="true"></span>
+      </div>
+    </div>
+  </section>
 
-    <h1>مداري</h1>
-    <div class="domain">madari.com.sa</div>
+  <!-- ============ RIBBONS ============ -->
+  <div class="ribbons" aria-hidden="true">
+    <div class="ribbon gold">
+      <div class="ribbon-track">
+        <span class="ribbon-item"><span class="ar">الرياض</span><span class="x">⇄</span>London</span><span class="ribbon-item"><i class="sep"></i></span>
+        <span class="ribbon-item"><span class="ar">جدة</span><span class="x">⇄</span>Shanghai</span><span class="ribbon-item"><i class="sep"></i></span>
+        <span class="ribbon-item"><span class="ar">الرياض</span><span class="x">⇄</span>Milan</span><span class="ribbon-item"><i class="sep"></i></span>
+        <span class="ribbon-item"><span class="ar">الدمام</span><span class="x">⇄</span>Singapore</span><span class="ribbon-item"><i class="sep"></i></span>
+        <span class="ribbon-item"><span class="ar">الرياض</span><span class="x">⇄</span>New York</span><span class="ribbon-item"><i class="sep"></i></span>
+        <span class="ribbon-item"><span class="ar">جدة</span><span class="x">⇄</span>Istanbul</span><span class="ribbon-item"><i class="sep"></i></span>
+        <span class="ribbon-item"><span class="ar">الرياض</span><span class="x">⇄</span>Tokyo</span><span class="ribbon-item"><i class="sep"></i></span>
+        <span class="ribbon-item"><span class="ar">جدة</span><span class="x">⇄</span>Paris</span><span class="ribbon-item"><i class="sep"></i></span>
+      </div>
+    </div>
+    <div class="ribbon royal reverse slow">
+      <div class="ribbon-track">
+        <span class="ribbon-item">تبادل الخبرات</span><span class="ribbon-item"><i class="sep"></i></span>
+        <span class="ribbon-item">Market Entry</span><span class="ribbon-item"><i class="sep"></i></span>
+        <span class="ribbon-item">شراكات دولية</span><span class="ribbon-item"><i class="sep"></i></span>
+        <span class="ribbon-item">Business Development</span><span class="ribbon-item"><i class="sep"></i></span>
+        <span class="ribbon-item">اجتماعات مؤهلة</span><span class="ribbon-item"><i class="sep"></i></span>
+        <span class="ribbon-item">International Partnerships</span><span class="ribbon-item"><i class="sep"></i></span>
+        <span class="ribbon-item">الربط التجاري للمعارض</span><span class="ribbon-item"><i class="sep"></i></span>
+        <span class="ribbon-item">Commercial Representation</span><span class="ribbon-item"><i class="sep"></i></span>
+      </div>
+    </div>
+  </div>
 
-    <div class="badge"><span class="dot"></span> الموقع تحت الإنشاء</div>
+  <!-- ============ ABOUT ============ -->
+  <section class="section bg-white" id="about">
+    <div class="container split">
+      <div class="reveal">
+        <span class="eyebrow">من نحن</span>
+        <h2 class="h2">نربط الأسواق، ونفتح أبواب الأعمال.</h2>
+        <hr class="gold-rule">
+        <p class="lead">مداري للربط التجاري بين الشركات المحلية والدولية هي وحدة متخصصة تابعة لمؤسسة عبدالرحمن الغامدي للعلاقات العامة، تعمل على بناء جسور تجارية بين الشركات السعودية والأسواق الدولية، ودعم الشركات الأجنبية في الوصول إلى السوق السعودي.</p>
+        <p class="mt-2 muted">نبدأ بفهم احتياج العميل، ثم نبحث عن الجهات المناسبة، ونؤهلها، ونتواصل معها، وننسق الاجتماعات، ونتابع الفرص التجارية وفق نطاق العمل المتفق عليه.</p>
+        <div class="btn-row mt-4">
+          <a class="btn" href="about.html">تعرّف على مداري <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a>
+          <a class="btn-link" href="contact.html#request">أرسل احتياجك</a>
+        </div>
+      </div>
+      <div class="media-frame reveal reveal-d2">
+        <img src="https://images.unsplash.com/photo-1758518730083-4c12527b6742?auto=format&fit=crop&w=1100&q=75" alt="اجتماع أعمال دولي في مكتب حديث" loading="lazy">
+        <div class="media-badge"><strong>Business Development Boutique</strong><span>منهجية واضحة من الاحتياج إلى الفرصة التجارية.</span></div>
+      </div>
+    </div>
+  </section>
 
-    <p class="lead">نعمل حاليًا على تجهيز تجربة جديدة ومميزة لكم.<br>ترقبونا قريبًا.</p>
+  <!-- ============ SERVICES ============ -->
+  <section class="section bg-sand map-light" id="services">
+    <div class="map-bg"><canvas data-worldmap data-tone="light" data-routes="false"></canvas></div>
+    <div class="container">
+      <div class="section-head">
+        <div class="reveal"><span class="eyebrow">ماذا نقدم؟</span><h2 class="h2">خدمات مصممة لتحويل العلاقات إلى فرص.</h2></div>
+        <p class="lead reveal reveal-d1">من البحث عن الشريك المناسب إلى الجلوس معه على طاولة الاجتماع — نغطي المسار كاملاً وفق نطاق عمل واضح.</p>
+      </div>
+      <div class="cards">
+        <a class="service-card reveal" href="services.html#sourcing">
+          <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=900&q=70" alt="ميناء شحن دولي" loading="lazy">
+          <span class="num">01</span><span class="line"></span>
+          <h3>الاستقطاب الدولي</h3>
+          <p>نبحث عن الشركات والعلامات التجارية والموردين والشركاء الدوليين وفق المواصفات التي يحددها العميل.</p>
+          <span class="card-link">اكتشف الخدمة ←</span>
+        </a>
+        <a class="service-card reveal reveal-d1" href="services.html#market-entry">
+          <img src="https://images.unsplash.com/photo-1784637729389-f24e1d2a8b22?auto=format&fit=crop&w=900&q=70" alt="أفق مدينة الرياض" loading="lazy">
+          <span class="num">02</span><span class="line"></span>
+          <h3>دخول السوق السعودي</h3>
+          <p>ندعم الشركات الأجنبية في التعرف على السوق السعودي والوصول إلى العملاء والشركاء المحتملين.</p>
+          <span class="card-link">اكتشف الخدمة ←</span>
+        </a>
+        <a class="service-card reveal reveal-d2" href="services.html#meetings">
+          <img src="https://images.unsplash.com/photo-1431540015161-0bf868a2d407?auto=format&fit=crop&w=900&q=70" alt="قاعة اجتماعات تنفيذية" loading="lazy">
+          <span class="num">03</span><span class="line"></span>
+          <h3>الاجتماعات التجارية المؤهلة</h3>
+          <p>نبحث ونؤهل ونتواصل مع الجهات المناسبة ثم ننسق الاجتماعات التجارية بين الأطراف.</p>
+          <span class="card-link">اكتشف الخدمة ←</span>
+        </a>
+        <a class="service-card reveal" href="services.html#representation">
+          <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=900&q=70" alt="فريق تطوير أعمال" loading="lazy">
+          <span class="num">04</span><span class="line"></span>
+          <h3>التمثيل وتطوير الأعمال</h3>
+          <p>خدمات مستمرة للشركات التي تحتاج إلى متابعة وتطوير أعمال داخل السوق السعودي.</p>
+          <span class="card-link">اكتشف الخدمة ←</span>
+        </a>
+        <a class="service-card reveal reveal-d1" href="services.html#exhibitions">
+          <img src="https://images.unsplash.com/photo-1775314054195-85f31de0c944?auto=format&fit=crop&w=900&q=70" alt="قاعة معرض تجاري" loading="lazy">
+          <span class="num">05</span><span class="line"></span>
+          <h3>الربط التجاري للمعارض</h3>
+          <p>نساعد الشركات على تحويل مشاركتها في المعارض إلى اجتماعات وفرص تجارية قبل المعرض وأثناءه وبعده.</p>
+          <span class="card-link">اكتشف الخدمة ←</span>
+        </a>
+        <a class="service-card reveal reveal-d2" href="services.html#pr">
+          <img src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?auto=format&fit=crop&w=900&q=70" alt="متحدث في مؤتمر أعمال" loading="lazy">
+          <span class="num">06</span><span class="line"></span>
+          <h3>العلاقات العامة التجارية</h3>
+          <p>دعم العلاقات المؤسسية والإعلامية عندما تكون مرتبطة بهدف تجاري أو بتطوير الأعمال.</p>
+          <span class="card-link">اكتشف الخدمة ←</span>
+        </a>
+      </div>
+    </div>
+  </section>
 
-    <footer>© <span id="year">2026</span> مداري. جميع الحقوق محفوظة.</footer>
-  </main>
+  <!-- ============ HOW WE WORK ============ -->
+  <section class="section bg-deep on-dark has-map" id="process">
+    <div class="map-bg"><canvas data-worldmap data-dot-alpha="0.2"></canvas></div>
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow reveal">كيف نعمل؟</span>
+        <h2 class="h2 reveal reveal-d1">منهجية من سبع مراحل، من الاحتياج إلى النتيجة.</h2>
+      </div>
+      <div class="process">
+        <span class="progress-line"></span>
+        <div class="step reveal"><span class="dot">01</span><div><h4>نفهم احتياجك</h4><p>الهدف والسوق والمواصفات.</p></div></div>
+        <div class="step reveal reveal-d1"><span class="dot">02</span><div><h4>نحدد الجهات المناسبة</h4><p>ملف الشريك أو العميل المستهدف.</p></div></div>
+        <div class="step reveal reveal-d2"><span class="dot">03</span><div><h4>نبحث ونؤهل</h4><p>فرز الجهات الأكثر ارتباطاً.</p></div></div>
+        <div class="step reveal reveal-d3"><span class="dot">04</span><div><h4>نتواصل</h4><p>تواصل مؤسسي مباشر.</p></div></div>
+        <div class="step reveal reveal-d1"><span class="dot">05</span><div><h4>نرتب الاجتماعات</h4><p>تنسيق بين الأطراف.</p></div></div>
+        <div class="step reveal reveal-d2"><span class="dot">06</span><div><h4>نتابع الفرص</h4><p>ما بعد الاجتماع.</p></div></div>
+        <div class="step reveal reveal-d3"><span class="dot">07</span><div><h4>نرفع النتائج</h4><p>تقارير واضحة وتوصيات.</p></div></div>
+      </div>
+      <div class="center mt-4 reveal"><a class="btn btn-gold" href="contact.html#request">ابدأ مشروعك <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a></div>
+    </div>
+  </section>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+  <!-- ============ WHY MADARI ============ -->
+  <section class="section" id="why">
+    <div class="container">
+      <div class="section-head">
+        <div class="reveal"><span class="eyebrow">لماذا مداري؟</span><h2 class="h2">العلاقات وحدها لا تكفي. نحتاج إلى منهجية.</h2></div>
+        <p class="lead reveal reveal-d1">نعمل كشريك تطوير أعمال متخصص — قوتنا في طريقة العمل، لا في الوعود.</p>
+      </div>
+      <div class="features">
+        <div class="feature reveal"><i class="ico" data-icon="network"></i><h3>شبكة علاقات</h3><p>علاقات محلية ودولية تساعد في الوصول إلى الجهات المناسبة.</p></div>
+        <div class="feature reveal reveal-d1"><i class="ico" data-icon="market"></i><h3>فهم السوق</h3><p>معرفة بالسوق السعودي واحتياجات الشركات وطبيعة التواصل التجاري.</p></div>
+        <div class="feature reveal reveal-d2"><i class="ico" data-icon="search"></i><h3>بحث وتأهيل</h3><p>لا نقدم مجرد قائمة أسماء، بل نعمل على تحديد الجهات الأكثر ارتباطاً باحتياج العميل.</p></div>
+        <div class="feature reveal"><i class="ico" data-icon="chat"></i><h3>تواصل مباشر</h3><p>نتولى التواصل الأولي والتنسيق وفق نطاق المشروع.</p></div>
+        <div class="feature reveal reveal-d1"><i class="ico" data-icon="follow"></i><h3>متابعة</h3><p>لا ينتهي العمل بمجرد إرسال جهة اتصال.</p></div>
+        <div class="feature reveal reveal-d2"><i class="ico" data-icon="shield"></i><h3>سرية واحترافية</h3><p>التعامل مع معلومات الشركات والفرص التجارية بسرية ومهنية.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTORS ============ -->
+  <section class="section bg-white" id="sectors">
+    <div class="container">
+      <div class="section-head">
+        <div class="reveal"><span class="eyebrow">القطاعات</span><h2 class="h2">قطاعات نعمل فيها بتركيز.</h2></div>
+        <p class="lead reveal reveal-d1">نبدأ بقطاعات محددة، ونتوسع بناءً على الفرص والطلب.</p>
+      </div>
+      <div class="sectors">
+        <a class="sector tall reveal" href="sectors.html#jewelry"><img src="https://images.unsplash.com/photo-1599707367072-cd6ada2bc375?auto=format&fit=crop&w=900&q=70" alt="ألماس ومجوهرات" loading="lazy"><div><small>Jewelry</small><h3>المجوهرات والأحجار الكريمة</h3></div></a>
+        <a class="sector reveal reveal-d1" href="sectors.html#food"><img src="https://images.unsplash.com/photo-1498579397066-22750a3cb424?auto=format&fit=crop&w=800&q=70" alt="منتجات غذائية طازجة" loading="lazy"><div><small>Food &amp; Beverage</small><h3>الأغذية والمشروبات</h3></div></a>
+        <a class="sector reveal reveal-d2" href="sectors.html#agriculture"><img src="https://images.unsplash.com/photo-1560493676-04071c5f467b?auto=format&fit=crop&w=800&q=70" alt="مزرعة حديثة" loading="lazy"><div><small>Agriculture</small><h3>الزراعة</h3></div></a>
+        <a class="sector tall reveal reveal-d3" href="sectors.html#technology"><img src="https://images.unsplash.com/photo-1674027444485-cec3da58eef4?auto=format&fit=crop&w=900&q=70" alt="تقنية وذكاء اصطناعي" loading="lazy"><div><small>Technology &amp; AI</small><h3>التكنولوجيا والذكاء الاصطناعي</h3></div></a>
+        <a class="sector reveal" href="sectors.html#hospitality"><img src="https://images.unsplash.com/photo-1742844552193-2fd3425cd26d?auto=format&fit=crop&w=800&q=70" alt="ردهة فندق فاخر" loading="lazy"><div><small>Hospitality</small><h3>الضيافة والفنادق</h3></div></a>
+        <a class="sector reveal reveal-d1" href="sectors.html#consumer"><img src="https://images.unsplash.com/photo-1604719312566-8912e9227c6a?auto=format&fit=crop&w=800&q=70" alt="منتجات استهلاكية" loading="lazy"><div><small>Consumer Goods</small><h3>المنتجات الاستهلاكية</h3></div></a>
+        <a class="sector wide reveal" href="sectors.html#industry"><img src="https://images.unsplash.com/photo-1496247749665-49cf5b1022e9?auto=format&fit=crop&w=1200&q=70" alt="منشأة صناعية" loading="lazy"><div><small>Industry &amp; Trade</small><h3>الصناعة والتجارة</h3></div></a>
+        <a class="sector wide reveal reveal-d1" href="sectors.html#services"><img src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?auto=format&fit=crop&w=1200&q=70" alt="اجتماع أعمال B2B" loading="lazy"><div><small>Specialized Services</small><h3>الخدمات المتخصصة</h3></div></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PACKAGES ============ -->
+  <section class="section bg-sand" id="packages">
+    <div class="container">
+      <div class="section-head">
+        <div class="reveal"><span class="eyebrow">الباقات</span><h2 class="h2">حلول مصممة حسب احتياجك التجاري</h2></div>
+        <p class="lead reveal reveal-d1">الأسعار استرشادية، ويُحدَّد كل مشروع وفق نطاق العمل.</p>
+      </div>
+      <div class="packages">
+        <article class="package reveal">
+          <span class="pkg-num">01</span>
+          <h3>الربط التجاري الأساسي</h3>
+          <div class="price">7,500 – 10,000 <small>ريال سعودي</small></div>
+          <p class="desc">خدمة أولية للشركات الراغبة في اختبار فرصة تجارية أو سوق جديد قبل الانتقال إلى مشروع أكبر.</p>
+          <ul class="checklist"><li>فهم احتياج العميل</li><li>إعداد قائمة مستهدفة</li><li>البحث والتواصل المبدئي</li><li>تقرير مختصر وتوصيات</li></ul>
+          <a class="btn btn-outline" href="contact.html?package=basic#request">اطلب هذه الباقة</a>
+        </article>
+        <article class="package featured reveal reveal-d1">
+          <span class="tag">الأكثر طلباً</span>
+          <span class="pkg-num">02</span>
+          <h3>الاستقطاب والاجتماعات</h3>
+          <div class="price">15,000 – 20,000 <small>ريال سعودي</small></div>
+          <p class="desc">للشركات التي لديها هدف تجاري واضح وتبحث عن شركاء أو عملاء أو موردين محتملين.</p>
+          <ul class="checklist"><li>بحث متقدم وتحديد الشركات المؤهلة</li><li>التواصل والمتابعة</li><li>تنسيق الاجتماعات المناسبة</li><li>تقرير تفصيلي عن النتائج</li></ul>
+          <a class="btn btn-gold" href="contact.html?package=meetings#request">اطلب هذه الباقة</a>
+        </article>
+        <article class="package reveal reveal-d2">
+          <span class="pkg-num">03</span>
+          <h3>دخول السوق السعودي</h3>
+          <div class="price">25,000 – 40,000 <small>ريال سعودي</small></div>
+          <p class="desc">مسار متكامل للشركات الدولية من دراسة الاحتياج إلى الاجتماعات ومتابعة الفرص.</p>
+          <ul class="checklist"><li>تحديد السوق والشركاء المحتملين</li><li>البحث والاستقطاب والتواصل</li><li>ترتيب الاجتماعات ومتابعتها</li><li>تقرير مرحلي ونهائي</li></ul>
+          <a class="btn btn-outline" href="contact.html?package=entry#request">ابدأ دخول السوق</a>
+        </article>
+        <article class="package reveal reveal-d3">
+          <span class="pkg-num">04</span>
+          <h3>التمثيل وتطوير الأعمال</h3>
+          <div class="price">من 12,000 <small>ريال شهرياً — حسب نطاق العمل</small></div>
+          <p class="desc">حضور تجاري مستمر داخل السوق السعودي وفق عقد ومؤشرات أداء متفق عليها.</p>
+          <ul class="checklist"><li>تطوير الأعمال والبحث المستمر</li><li>ترتيب الاجتماعات</li><li>متابعة العملاء المحتملين</li><li>تقارير دورية</li></ul>
+          <a class="btn btn-outline" href="contact.html?package=representation#request">اطلب عرضاً مخصصاً</a>
+        </article>
+      </div>
+      <div class="note-box reveal">
+        <i data-icon="info"></i>
+        <div>
+          <h4>ملاحظة</h4>
+          <p>الباقات والأسعار المعروضة استرشادية وقابلة للتعديل وفق طبيعة المشروع، والقطاع، والدولة، وحجم البحث، وعدد الجهات المستهدفة، ومدة التنفيذ ونطاق المتابعة.</p>
+          <p>لا تتضمن الخدمات ضمان إبرام صفقة تجارية، وإنما يتم الالتزام بنطاق العمل والمخرجات ومؤشرات الأداء المتفق عليها تعاقدياً.</p>
+        </div>
+      </div>
+      <div class="center mt-4"><a class="btn-link" href="packages.html">تفاصيل الباقات كاملة</a></div>
+    </div>
+  </section>
+
+  <!-- ============ WHO NEEDS ============ -->
+  <section class="section bg-white" id="who">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow reveal">من يحتاج خدمات مداري؟</span>
+        <h2 class="h2 reveal reveal-d1">إذا كان هدفك فرصة خارج حدود شبكتك الحالية.</h2>
+      </div>
+      <div class="audience">
+        <div class="aud reveal"><span class="ico" data-icon="handshake"></span><span>شركة سعودية تبحث عن شريك دولي</span></div>
+        <div class="aud reveal reveal-d1"><span class="ico" data-icon="plane"></span><span>شركة أجنبية تريد دخول السعودية</span></div>
+        <div class="aud reveal reveal-d2"><span class="ico" data-icon="box"></span><span>مستورد يبحث عن مورد</span></div>
+        <div class="aud reveal reveal-d3"><span class="ico" data-icon="factory"></span><span>مصنع يبحث عن موزع</span></div>
+        <div class="aud reveal"><span class="ico" data-icon="tag"></span><span>علامة تجارية تبحث عن سوق جديد</span></div>
+        <div class="aud reveal reveal-d1"><span class="ico" data-icon="user"></span><span>شركة تبحث عن وكيل أو ممثل</span></div>
+        <div class="aud reveal reveal-d2"><span class="ico" data-icon="booth"></span><span>شركة مشاركة في معرض</span></div>
+        <div class="aud reveal reveal-d3"><span class="ico" data-icon="invest"></span><span>مستثمر يبحث عن فرص وشركاء</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOREIGN / SAUDI ============ -->
+  <section class="dual" id="markets">
+    <div class="dual-panel">
+      <img src="https://images.unsplash.com/photo-1694018359679-49465b4c0d61?auto=format&fit=crop&w=1300&q=70" alt="برج المملكة في الرياض" loading="lazy">
+      <span class="flag">For International Companies</span>
+      <h2 class="h2 reveal">هل تريد دخول السوق السعودي؟</h2>
+      <p class="reveal reveal-d1">السوق السعودي يحمل فرصاً واسعة، لكن الوصول إلى الطرف المناسب يحتاج إلى بحث محلي وتواصل مؤسسي وفهم للسوق.</p>
+      <ul class="checklist reveal reveal-d2"><li>فهم الاحتياج</li><li>تحديد الجهات المستهدفة</li><li>البحث عن شركاء وعملاء محتملين</li><li>التواصل الأولي</li><li>ترتيب الاجتماعات</li><li>متابعة الفرص</li></ul>
+      <div class="reveal reveal-d3"><a class="btn btn-gold" href="foreign-companies.html">ابدأ دخولك إلى السوق السعودي</a></div>
+    </div>
+    <div class="dual-panel">
+      <img src="https://images.unsplash.com/photo-1518527989017-5baca7a58d3c?auto=format&fit=crop&w=1300&q=70" alt="سفينة شحن في عرض البحر" loading="lazy">
+      <span class="flag">For Saudi Companies</span>
+      <h2 class="h2 reveal">هل تبحث عن شركة أو شريك خارج السعودية؟</h2>
+      <p class="reveal reveal-d1">نساعد الشركات السعودية في الوصول إلى شركات وعلامات وموردين وشركاء دوليين وفق احتياجاتها التجارية.</p>
+      <ul class="checklist reveal reveal-d2"><li>البحث الدولي</li><li>اختيار الشركات المناسبة</li><li>التأهيل</li><li>التواصل</li><li>الاجتماعات</li><li>المتابعة</li></ul>
+      <div class="reveal reveal-d3"><a class="btn btn-outline light" href="saudi-companies.html">أخبرنا باحتياجك</a></div>
+    </div>
+  </section>
+
+  <!-- ============ EXHIBITIONS ============ -->
+  <section class="section bg-navy on-dark has-map" id="exhibitions">
+    <div class="map-bg"><canvas data-worldmap data-dot-alpha="0.14" data-routes="false"></canvas></div>
+    <div class="container">
+      <div class="section-head">
+        <div class="reveal"><span class="eyebrow">المعارض</span><h2 class="h2">من المشاركة في المعرض إلى الفرصة التجارية.</h2></div>
+        <p class="lead reveal reveal-d1">المعرض لا يجب أن ينتهي بانتهاء أيامه. نعمل على ربط الشركات المشاركة بالعملاء والشركاء المحتملين قبل المعرض وأثناءه وبعده.</p>
+      </div>
+      <div class="timeline">
+        <div class="phase reveal"><div class="when">المرحلة الأولى</div><h3>قبل المعرض</h3><ol><li>تحديد الشركات</li><li>التواصل</li><li>ترتيب الاجتماعات</li></ol></div>
+        <div class="phase reveal reveal-d1"><div class="when">المرحلة الثانية</div><h3>أثناء المعرض</h3><ol><li>تنفيذ الاجتماعات</li><li>تنسيق اللقاءات</li><li>رصد الفرص</li></ol></div>
+        <div class="phase reveal reveal-d2"><div class="when">المرحلة الثالثة</div><h3>بعد المعرض</h3><ol><li>المتابعة</li><li>تقييم الاهتمام</li><li>رفع النتائج</li></ol></div>
+      </div>
+      <div class="mt-4 reveal"><a class="btn btn-gold" href="exhibitions.html">خدمة الربط التجاري للمعارض</a></div>
+    </div>
+  </section>
+
+  <!-- ============ JEWELRY PILOT ============ -->
+  <section class="section bg-white" id="pilot">
+    <div class="container split reverse">
+      <div class="reveal">
+        <span class="eyebrow">المشروع التجريبي — المجوهرات</span>
+        <h2 class="h2">من الخبرة إلى الفرصة</h2>
+        <hr class="gold-rule">
+        <p class="lead">تبدأ مداري في بناء نموذجها التشغيلي من قطاعات تمتلك فيها خبرة وعلاقات مهنية، ومن بينها قطاع المجوهرات، مع إمكانية التوسع لاحقاً إلى قطاعات أخرى.</p>
+        <div class="btn-row mt-4"><a class="btn" href="sectors.html#jewelry">قطاع المجوهرات</a><a class="btn-link" href="contact.html#request">أرسل احتياجك</a></div>
+      </div>
+      <div class="pilot-gallery reveal reveal-d1">
+        <video data-autoplay autoplay muted loop playsinline preload="none" poster="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=900&q=70"><source src="https://assets.mixkit.co/videos/20877/20877-720.mp4" type="video/mp4"></video>
+        <img src="https://images.unsplash.com/photo-1543294001-f7cd5d7fb516?auto=format&fit=crop&w=700&q=70" alt="خواتم ذهبية" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1573408301185-9146fe634ad0?auto=format&fit=crop&w=700&q=70" alt="مجوهرات بأحجار كريمة" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ KPIs ============ -->
+  <section class="section bg-sand" id="kpis">
+    <div class="container">
+      <div class="section-head">
+        <div class="reveal"><span class="eyebrow">كيف نقيس العمل؟</span><h2 class="h2">عمل قابل للقياس</h2></div>
+        <p class="lead reveal reveal-d1">نلتزم بمؤشرات أداء واضحة يتم الاتفاق عليها في كل مشروع، ونرفع عنها تقارير دورية.</p>
+      </div>
+      <div class="kpis reveal">
+        <div class="kpi"><b>01</b><span>الشركات التي تم بحثها</span></div>
+        <div class="kpi"><b>02</b><span>الشركات التي تم تأهيلها</span></div>
+        <div class="kpi"><b>03</b><span>الجهات التي تم التواصل معها</span></div>
+        <div class="kpi"><b>04</b><span>معدل الاستجابة</span></div>
+        <div class="kpi"><b>05</b><span>الاجتماعات التي تم ترتيبها</span></div>
+        <div class="kpi"><b>06</b><span>الاجتماعات المنفذة</span></div>
+        <div class="kpi"><b>07</b><span>الفرص التجارية الجادة</span></div>
+        <div class="kpi"><b>08</b><span>نتائج المتابعة</span></div>
+        <div class="kpi"><b>09</b><span>العقود أو الشراكات الناتجة عندما تكون قابلة للقياس</span></div>
+      </div>
+      <div class="trust-soon mt-4 reveal">
+        <div><span class="eyebrow">الثقة والمصداقية</span><h3 class="h3">شركاؤنا وقصص النجاح قريباً</h3></div>
+        <div class="slots" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ REQUEST FORM ============ -->
+  <section class="section bg-white" id="request">
+    <div class="container form-wrap">
+      <div class="reveal">
+        <span class="eyebrow">طلب خدمة</span>
+        <h2 class="h2">أخبرنا بما تبحث عنه</h2>
+        <p class="lead mt-2">شاركنا احتياجك التجاري، وسيتواصل معك فريق مداري لمناقشة نطاق العمل والخطوات التالية.</p>
+        <div class="contact-list">
+          <div class="contact-item"><span class="ico" data-icon="mail"></span><div><small>البريد الإلكتروني</small><a data-contact="email" href="mailto:info@madari.com.sa">info@madari.com.sa</a></div></div>
+          <div class="contact-item"><span class="ico" data-icon="phone"></span><div><small>الهاتف</small><a data-contact="phone" href="tel:+966565563222">+966 56 556 3222</a></div></div>
+          <div class="contact-item"><span class="ico" data-icon="whatsapp"></span><div><small>واتساب</small><a data-contact="whatsapp" href="https://wa.me/966565563222" target="_blank" rel="noopener">راسلنا على واتساب</a></div></div>
+        </div>
+      </div>
+      <div class="form-card reveal reveal-d1">
+        <form class="js-form" novalidate>
+          <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <input type="hidden" name="form" value="home-request">
+          <div class="form-grid">
+            <div class="field"><label for="f-name">الاسم *</label><input id="f-name" name="name" required autocomplete="name"></div>
+            <div class="field"><label for="f-company">اسم الشركة *</label><input id="f-company" name="company" required autocomplete="organization"></div>
+            <div class="field"><label for="f-country">الدولة *</label><input id="f-country" name="country" required autocomplete="country-name"></div>
+            <div class="field"><label for="f-email">البريد الإلكتروني *</label><input id="f-email" name="email" type="email" required autocomplete="email" dir="ltr"></div>
+            <div class="field"><label for="f-phone">رقم الهاتف *</label><input id="f-phone" name="phone" type="tel" required autocomplete="tel" dir="ltr"></div>
+            <div class="field"><label for="f-sector">القطاع</label>
+              <select id="f-sector" name="sector"><option value="">اختر القطاع</option><option>المجوهرات والأحجار الكريمة</option><option>الأغذية والمشروبات</option><option>الزراعة</option><option>التكنولوجيا والذكاء الاصطناعي</option><option>الضيافة والفنادق</option><option>المنتجات الاستهلاكية</option><option>الصناعة والتجارة</option><option>الخدمات المتخصصة</option><option>أخرى</option></select></div>
+            <div class="field"><label for="f-service">نوع الخدمة المطلوبة *</label>
+              <select id="f-service" name="service" required><option value="">اختر الخدمة</option><option value="sourcing">الاستقطاب الدولي</option><option value="market-entry">دخول السوق السعودي</option><option value="meetings">الاجتماعات التجارية المؤهلة</option><option value="representation">التمثيل وتطوير الأعمال</option><option value="exhibitions">الربط التجاري للمعارض</option><option value="pr">العلاقات العامة التجارية</option><option value="other">غير محدد / أحتاج استشارة</option></select></div>
+            <div class="field"><label for="f-market">السوق المستهدف</label><input id="f-market" name="target_market" placeholder="مثال: المملكة العربية السعودية، إيطاليا، الصين"></div>
+            <div class="field full"><label for="f-partner">نوع الشركة أو الشريك المطلوب</label><input id="f-partner" name="partner_type" placeholder="مورد، موزع، وكيل، عميل، مستثمر…"></div>
+            <div class="field full"><label for="f-desc">وصف الاحتياج *</label><textarea id="f-desc" name="description" required></textarea></div>
+            <div class="field"><label for="f-budget">الميزانية التقديرية <span class="opt">(اختياري)</span></label>
+              <select id="f-budget" name="budget"><option value="">اختر</option><option>أقل من 10,000 ريال</option><option>10,000 – 20,000 ريال</option><option>20,000 – 40,000 ريال</option><option>أكثر من 40,000 ريال</option><option>عقد شهري</option></select></div>
+            <div class="field"><label for="f-time">المدة الزمنية المطلوبة</label>
+              <select id="f-time" name="timeline"><option value="">اختر</option><option>خلال شهر</option><option>1 – 3 أشهر</option><option>3 – 6 أشهر</option><option>مرن</option></select></div>
+            <div class="field full"><label for="f-source">كيف تعرفت على مداري؟</label>
+              <select id="f-source" name="source"><option value="">اختر</option><option>محركات البحث</option><option>وسائل التواصل الاجتماعي</option><option>ترشيح من جهة أو شخص</option><option>معرض أو فعالية</option><option>أخرى</option></select></div>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-gold" type="submit">إرسال طلب الخدمة</button>
+            <small>نتعامل مع معلوماتك بسرية تامة.</small>
+          </div>
+          <div class="form-status" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="cta-band on-dark">
+    <video data-autoplay autoplay muted loop playsinline preload="none" poster="https://images.unsplash.com/photo-1678182451047-196f22a4143e?auto=format&fit=crop&w=1600&q=60"><source src="https://assets.mixkit.co/videos/30125/30125-720.mp4" type="video/mp4"></video>
+    <div class="container inner">
+      <div class="reveal">
+        <span class="eyebrow">لنبدأ من احتياجك</span>
+        <h2 class="h2">سواء كنت تتجه إلى العالم أو قادماً إلى السعودية — مداري هي نقطة البداية.</h2>
+      </div>
+      <div class="btn-row reveal reveal-d1">
+        <a class="btn btn-gold" href="contact.html#request">ابدأ مشروعك</a>
+        <a class="btn btn-outline" href="contact.html">تواصل معنا</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+<script src="assets/js/land.js" defer></script>
+<script src="assets/js/geo.js" defer></script>
+<script src="assets/js/main.js" defer></script>
 </body>
 </html>
