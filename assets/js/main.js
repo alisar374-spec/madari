@@ -104,44 +104,162 @@
   function icon(name) { return ICONS[name] || ""; }
 
   /* ---------- Header ---------- */
+  var H = {
+    ar: {
+      primary: [["index", "الرئيسية"], ["about", "من نحن"], ["services", "الخدمات"], ["packages", "الباقات"], ["sectors", "القطاعات"]],
+      solutions: "الحلول",
+      drop: [
+        ["foreign-companies", "دخول السوق السعودي", "للشركات الدولية الراغبة في الوصول إلى المملكة", "plane"],
+        ["saudi-companies", "الشركات السعودية", "للوصول إلى شركاء وموردين دوليين", "handshake"],
+        ["exhibitions", "المعارض والفعاليات", "تحويل المشاركة إلى فرص تجارية", "booth"]
+      ],
+      contact: ["contact", "تواصل معنا"],
+      slogan: "من السوق السعودي إلى العالم، ومن العالم إلى السوق السعودي.",
+      langName: "English"
+    },
+    en: {
+      primary: [["index", "Home"], ["about", "About"], ["services", "Services"], ["packages", "Packages"], ["sectors", "Sectors"]],
+      solutions: "Solutions",
+      drop: [
+        ["foreign-companies", "Saudi Market Entry", "For international companies entering the Kingdom", "plane"],
+        ["saudi-companies", "Saudi Companies", "Reach international partners and suppliers", "handshake"],
+        ["exhibitions", "Exhibitions & Events", "Turn participation into opportunities", "booth"]
+      ],
+      contact: ["contact", "Contact"],
+      slogan: "From Saudi Arabia to the World, and from the World to Saudi Arabia.",
+      langName: "العربية"
+    }
+  }[lang];
+
+  function href(key) { return key === "index" ? "index.html" : key + ".html"; }
+
   function buildHeader() {
     var mount = document.getElementById("site-header");
     if (!mount) return;
-    var links = T.nav.map(function (n) {
-      var href = n[0] === "index" ? "index.html" : n[0] + ".html";
-      return '<a href="' + href + '"' + (n[0] === page ? ' class="active" aria-current="page"' : "") + ">" + n[1] + "</a>";
+    var inDrop = H.drop.some(function (d) { return d[0] === page; });
+    var link = function (n) { return '<a href="' + href(n[0]) + '"' + (n[0] === page ? ' class="active" aria-current="page"' : "") + ">" + n[1] + "</a>"; };
+    var caret = '<svg class="caret" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3.5l3 3 3-3"/></svg>';
+    var dropLinks = H.drop.map(function (d) {
+      return '<a href="' + href(d[0]) + '"' + (d[0] === page ? ' class="active" aria-current="page"' : "") + '><span class="di">' + icon(d[3]) + "</span><span><b>" + d[1] + "</b><small>" + d[2] + "</small></span></a>";
     }).join("");
     var otherLang = lang === "ar" ? "en/" + file : "../" + file;
+    var globe = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg>';
     var solid = document.body.hasAttribute("data-solid-header") ? " solid" : "";
+
+    var mobileItems = H.primary.concat(H.drop.map(function (d) { return [d[0], d[1]]; })).concat([H.contact]);
+    var mobileLinks = mobileItems.map(function (n, i) {
+      return '<a href="' + href(n[0]) + '"' + (n[0] === page ? ' class="active"' : "") + ' style="transition-delay:' + (0.05 + i * 0.04).toFixed(2) + 's"><i>' + String(i + 1).padStart(2, "0") + "</i>" + n[1] + "</a>";
+    }).join("");
+
     mount.outerHTML =
+      '<div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>' +
       '<header class="site-header' + solid + '" id="top-header">' +
-        '<div class="container nav-wrap">' +
+        '<div class="topbar"><div class="container">' +
+          '<div class="topbar-contact">' +
+            '<a class="ltr" href="mailto:' + CONTACT.email + '">' + icon("mail") + CONTACT.email + "</a>" +
+            '<a class="ltr" href="' + CONTACT.phoneHref + '">' + icon("phone") + CONTACT.phoneDisplay + "</a>" +
+          "</div>" +
+          '<span class="topbar-slogan">' + H.slogan + "</span>" +
+        "</div></div>" +
+        '<div class="nav-shell"><div class="container nav-wrap">' +
           '<a class="brand" href="index.html" aria-label="MADARI">' +
-            '<img src="' + root + 'assets/img/logo-mark.svg" alt="" width="52" height="52">' +
+            '<img src="' + root + 'assets/img/logo-mark.svg" alt="" width="50" height="50">' +
             '<span class="brand-text"><span class="brand-ar">مداري</span><span class="brand-en">MADARI</span></span>' +
           "</a>" +
-          '<nav class="main-nav" id="main-nav" aria-label="Main">' + links + "</nav>" +
+          '<nav class="main-nav" id="main-nav" aria-label="Main">' +
+            '<span class="nav-indicator" aria-hidden="true"></span>' +
+            H.primary.map(link).join("") +
+            '<div class="nav-drop">' +
+              '<button type="button" aria-expanded="false" aria-haspopup="true"' + (inDrop ? ' class="active"' : "") + ">" + H.solutions + caret + "</button>" +
+              '<div class="drop-panel" role="menu">' + dropLinks + "</div>" +
+            "</div>" +
+            link(H.contact) +
+          "</nav>" +
           '<div class="nav-actions">' +
-            '<a class="lang-switch" href="' + otherLang + '" hreflang="' + (lang === "ar" ? "en" : "ar") + '" title="' + T.langTitle + '">' + T.langLabel + "</a>" +
+            '<a class="lang-switch" href="' + otherLang + '" hreflang="' + (lang === "ar" ? "en" : "ar") + '" title="' + H.langName + '">' + globe + T.langLabel + "</a>" +
             '<a class="btn btn-gold" href="contact.html#request">' + T.cta + "</a>" +
-            '<button class="menu-toggle" aria-label="' + T.menu + '" aria-controls="main-nav" aria-expanded="false"><span></span></button>' +
+            '<button class="menu-toggle" aria-label="' + T.menu + '" aria-controls="mobile-menu" aria-expanded="false"><span></span></button>' +
           "</div>" +
+        "</div></div>" +
+      "</header>" +
+      '<div class="mobile-menu" id="mobile-menu" aria-hidden="true">' +
+        "<nav>" + mobileLinks + "</nav>" +
+        '<div class="mm-foot">' +
+          '<a class="btn btn-gold" href="contact.html#request">' + T.cta + "</a>" +
+          '<div class="mm-contact"><a class="ltr" href="mailto:' + CONTACT.email + '">' + CONTACT.email + '</a><a class="ltr" href="' + CONTACT.phoneHref + '">' + CONTACT.phoneDisplay + '</a><a href="' + otherLang + '">' + H.langName + "</a></div>" +
         "</div>" +
-      "</header>";
+      "</div>";
 
     var header = document.getElementById("top-header");
+    var nav = header.querySelector(".main-nav");
+    var indicator = header.querySelector(".nav-indicator");
+    var drop = header.querySelector(".nav-drop");
+    var dropBtn = drop.querySelector("button");
     var toggle = header.querySelector(".menu-toggle");
+    var progress = document.getElementById("scroll-progress");
+    var mobile = document.getElementById("mobile-menu");
+
+    /* sliding gold indicator */
+    var items = Array.prototype.slice.call(nav.querySelectorAll(":scope > a, .nav-drop > button"));
+    var current = items.filter(function (el) { return el.classList.contains("active"); })[0];
+    function moveTo(el) {
+      items.forEach(function (i) { i.classList.remove("hl"); });
+      if (!el) { indicator.style.opacity = "0"; return; }
+      indicator.style.left = (el.offsetLeft + (el.parentElement !== nav ? el.parentElement.offsetLeft : 0)) + "px";
+      indicator.style.width = el.offsetWidth + "px";
+      indicator.style.opacity = "1";
+      el.classList.add("hl");
+    }
+    items.forEach(function (el) {
+      el.addEventListener("mouseenter", function () { moveTo(el); });
+      el.addEventListener("focus", function () { moveTo(el); });
+    });
+    nav.addEventListener("mouseleave", function () { moveTo(current); });
+    function syncIndicator() { if (getComputedStyle(nav).display !== "none") moveTo(current); }
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(syncIndicator);
+    window.addEventListener("resize", syncIndicator);
+    setTimeout(syncIndicator, 60);
+
+    /* solutions dropdown */
+    var closeTimer;
+    function setDrop(open) { drop.classList.toggle("open", open); dropBtn.setAttribute("aria-expanded", open ? "true" : "false"); }
+    drop.addEventListener("mouseenter", function () { clearTimeout(closeTimer); setDrop(true); });
+    drop.addEventListener("mouseleave", function () { closeTimer = setTimeout(function () { setDrop(false); }, 180); });
+    dropBtn.addEventListener("click", function () { setDrop(!drop.classList.contains("open")); });
+    document.addEventListener("click", function (e) { if (!drop.contains(e.target)) setDrop(false); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") { setDrop(false); closeMobile(); } });
+
+    /* mobile menu */
+    function closeMobile() {
+      document.body.classList.remove("nav-open"); document.body.style.overflow = "";
+      toggle.setAttribute("aria-expanded", "false"); mobile.setAttribute("aria-hidden", "true");
+    }
     toggle.addEventListener("click", function () {
-      var open = document.body.classList.toggle("nav-open");
-      toggle.setAttribute("aria-expanded", open ? "true" : "false");
-      document.body.style.overflow = open ? "hidden" : "";
+      var open = !document.body.classList.contains("nav-open");
+      if (!open) { closeMobile(); return; }
+      document.body.classList.add("nav-open"); document.body.style.overflow = "hidden";
+      toggle.setAttribute("aria-expanded", "true"); mobile.setAttribute("aria-hidden", "false");
+      header.classList.remove("is-hidden");
     });
-    header.querySelectorAll(".main-nav a").forEach(function (a) {
-      a.addEventListener("click", function () { document.body.classList.remove("nav-open"); document.body.style.overflow = ""; });
-    });
-    var onScroll = function () { header.classList.toggle("scrolled", window.scrollY > 40); };
+    mobile.querySelectorAll("a").forEach(function (a) { a.addEventListener("click", closeMobile); });
+
+    /* scroll: condense into floating capsule, hide on scroll down, reveal on scroll up */
+    var lastY = window.scrollY, ticking = false;
+    function onScroll() {
+      var y = window.scrollY;
+      var scrolled = y > 40;
+      header.classList.toggle("scrolled", scrolled);
+      document.body.classList.toggle("is-scrolled", scrolled);
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.transform = "scaleX(" + (max > 0 ? Math.min(1, y / max) : 0).toFixed(4) + ")";
+      var menuOpen = document.body.classList.contains("nav-open") || drop.classList.contains("open");
+      if (!menuOpen && y > 320 && y - lastY > 6) header.classList.add("is-hidden");
+      else if (lastY - y > 6 || y <= 320) header.classList.remove("is-hidden");
+      lastY = y; ticking = false;
+    }
     onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("scroll", function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+    header.addEventListener("focusin", function () { header.classList.remove("is-hidden"); });
   }
 
   /* ---------- Footer ---------- */

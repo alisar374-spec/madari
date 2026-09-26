@@ -80,7 +80,7 @@
   }
   function loop(canvas, draw) {
     var visible = true, raf = 0, t0 = performance.now();
-    function frame(now) { draw((now - t0) / 1000); if (visible && !reduce) raf = requestAnimationFrame(frame); }
+    function frame(now) { draw(Math.max(0, (now - t0) / 1000)); if (visible && !reduce) raf = requestAnimationFrame(frame); }
     if ("IntersectionObserver" in window) {
       new IntersectionObserver(function (en) {
         visible = en[0].isIntersecting;
