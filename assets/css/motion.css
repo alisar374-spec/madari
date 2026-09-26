@@ -162,6 +162,9 @@ html[dir="ltr"] .media-frame.mx-img > img, html[dir="ltr"] .media-frame.mx-img >
 .ribbons .ribbon { transition: transform 1.2s var(--ease); }
 
 
+/* portraits: keep faces in frame */
+img[src*="images.pexels.com"] { object-position: center 18%; }
+
 /* keep side entries and parallax from creating horizontal scroll */
 main, .site-footer { overflow-x: clip; }
 
