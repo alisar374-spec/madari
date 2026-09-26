@@ -15,20 +15,31 @@ html::before {
     #050E36;
   transform: translateY(0);
 }
+/* animated logo (the SVG's orbits keep spinning) */
 html::after {
-  background: url("../img/logo-mark.svg") center 44% / 96px no-repeat;
+  background: url("../img/logo-mark.svg") center 44% / 112px no-repeat;
   opacity: 0;
 }
-html.is-loading::before, html.is-leaving::before { visibility: visible; pointer-events: auto; }
-html.is-loading.first-visit::after { visibility: visible; opacity: 1; animation: loaderLogo 1.1s var(--ease) both; }
+/* gold orbit ring around the logo */
+body::after {
+  content: ""; position: fixed; z-index: 10001; pointer-events: none; visibility: hidden; opacity: 0;
+  left: 50%; top: 44%; width: 176px; height: 176px; margin: -88px 0 0 -88px; border-radius: 50%;
+  border: 1px solid rgba(232, 204, 128, .14); border-top-color: #E8CC80; border-inline-end-color: rgba(232, 204, 128, .5);
+  box-shadow: 0 0 40px -6px rgba(232, 204, 128, .25);
+}
+html.is-loading::before { visibility: visible; pointer-events: auto; }
+html.is-loading::after { visibility: visible; opacity: 1; animation: loaderLogo .8s var(--ease) both; }
+html.is-loading body::after { visibility: visible; opacity: 1; animation: ringIn .6s var(--ease) both, ringSpin 1.1s linear infinite; }
 html.is-revealing::before { visibility: visible; transform: translateY(-101%); transition: transform .9s cubic-bezier(.76, 0, .24, 1); }
-html.is-revealing::after { visibility: visible; opacity: 0; transition: opacity .35s; }
-html.is-leaving::before { transform: translateY(101%); animation: curtainIn .5s cubic-bezier(.76, 0, .24, 1) forwards; }
+html.is-revealing::after { visibility: visible; opacity: 0; transform: scale(.85); transition: opacity .35s, transform .5s var(--ease); }
+html.is-revealing body::after { visibility: visible; opacity: 0; transition: opacity .3s; animation: ringSpin 1.1s linear infinite; }
 @keyframes curtainIn { to { transform: translateY(0); } }
-@keyframes loaderLogo { 0% { opacity: 0; transform: scale(.8); } 100% { opacity: 1; transform: none; } }
+@keyframes loaderLogo { 0% { opacity: 0; transform: scale(.7); } 60% { opacity: 1; transform: scale(1.04); } 100% { opacity: 1; transform: none; } }
+@keyframes ringIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes ringSpin { to { transform: rotate(360deg); } }
 
 .loader-line {
-  position: fixed; left: 50%; top: calc(44% + 76px); z-index: 10001; width: 160px; height: 1px;
+  position: fixed; left: 50%; top: calc(44% + 116px); z-index: 10001; width: 160px; height: 1px;
   margin-left: -80px; background: rgba(255, 255, 255, .12); overflow: hidden; pointer-events: none;
 }
 .loader-line::after {
@@ -36,13 +47,31 @@ html.is-leaving::before { transform: translateY(101%); animation: curtainIn .5s 
   transform: scaleX(0); transform-origin: left; animation: loadLine 1s var(--ease) forwards;
 }
 .loader-word {
-  position: fixed; left: 0; right: 0; top: calc(44% + 92px); z-index: 10001; text-align: center; pointer-events: none;
+  position: fixed; left: 0; right: 0; top: calc(44% + 132px); z-index: 10001; text-align: center; pointer-events: none;
   font-family: "Inter", sans-serif; font-size: .7rem; letter-spacing: .5em; color: var(--gold-light); opacity: 0;
   animation: fadeWord .8s .2s forwards;
 }
 @keyframes loadLine { to { transform: scaleX(1); } }
 @keyframes fadeWord { to { opacity: .9; } }
 html.is-revealing .loader-line, html.is-revealing .loader-word { opacity: 0; transition: opacity .3s; }
+
+/* leaving curtain (real element — reliable across browsers) */
+.mx-curtain {
+  position: fixed; inset: 0; z-index: 10002; pointer-events: all;
+  background: radial-gradient(circle at 50% 45%, rgba(35, 80, 216, .35), transparent 55%), #050E36;
+  transform: translate3d(0, 101%, 0); transition: transform .6s cubic-bezier(.76, 0, .24, 1);
+}
+.mx-curtain.on { transform: none; }
+.mx-curtain .mc-inner { position: absolute; left: 50%; top: 44%; width: 176px; height: 176px; margin: -88px 0 0 -88px; display: grid; place-items: center; }
+.mx-curtain img { width: 112px; height: 112px; opacity: 0; transform: scale(.7); transition: opacity .45s .38s, transform .7s .38s var(--ease); }
+.mx-curtain.on img { opacity: 1; transform: none; }
+.mx-curtain .ring {
+  position: absolute; inset: 0; border-radius: 50%;
+  border: 1px solid rgba(232, 204, 128, .14); border-top-color: #E8CC80; border-inline-end-color: rgba(232, 204, 128, .5);
+  box-shadow: 0 0 40px -6px rgba(232, 204, 128, .25);
+  opacity: 0; transition: opacity .4s .45s; animation: ringSpin 1.1s linear infinite;
+}
+.mx-curtain.on .ring { opacity: 1; }
 
 /* ---------- Hero slider ---------- */
 .hero-slides { position: absolute; inset: 0; z-index: -3; overflow: hidden; background: var(--navy-900); }
@@ -212,7 +241,7 @@ html.lenis-on body { height: auto; }
 .hero .globe-wrap { transition: opacity 1s var(--ease); }
 .slide-caption span { transition: opacity .35s; }
 @media (prefers-reduced-motion: reduce) {
-  html::before, html::after, .loader-line, .loader-word { display: none !important; }
+  html::before, html::after, body::after, .loader-line, .loader-word { display: none !important; }
   .reveal, .w > span, .mx-img, .mx-img img, .mx-img video, .media-frame.mx-img > img { opacity: 1 !important; transform: none !important; clip-path: none !important; scale: 1 !important; }
   .gold-rule { transform: none; }
   .hero-slide.is-active > *, .page-hero .bg > * { animation: none; }

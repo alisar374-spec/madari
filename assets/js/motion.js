@@ -29,7 +29,7 @@
       document.body.appendChild(line); document.body.appendChild(word);
     }
     var start = performance.now();
-    var minHold = first ? 1150 : 120;
+    var minHold = first ? 1300 : 650;
     function reveal() {
       var wait = Math.max(0, minHold - (performance.now() - start));
       setTimeout(function () {
@@ -64,10 +64,20 @@
       if (url.pathname === location.pathname && url.search === location.search) return; // same page / anchors
       e.preventDefault();
       html.classList.add("is-leaving");
-      setTimeout(function () { location.href = url.href; }, 480);
+      var logo = document.querySelector(".brand img");
+      var cur = document.createElement("div");
+      cur.className = "mx-curtain";
+      cur.innerHTML = '<div class="mc-inner"><span class="ring"></span><img alt="" src="' + (logo ? logo.src : "") + '"></div>';
+      document.body.appendChild(cur);
+      void cur.offsetWidth;
+      cur.classList.add("on");
+      setTimeout(function () { location.href = url.href; }, 900);
     });
     window.addEventListener("pageshow", function (ev) {
-      if (ev.persisted) html.classList.remove("is-leaving", "is-loading", "is-revealing");
+      if (ev.persisted) {
+        html.classList.remove("is-leaving", "is-loading", "is-revealing");
+        each(".mx-curtain", function (c) { c.remove(); });
+      }
     });
   }
 
