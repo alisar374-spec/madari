@@ -19,7 +19,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@500;600;700&family=Inter:wght@400;500;600&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/style.css?v=4">
+  <link rel="stylesheet" href="../assets/css/motion.css?v=4">
+  <script>(function(){var d=document.documentElement;if(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches)return;d.classList.add("is-loading");try{if(!sessionStorage.getItem("madari-v"))d.classList.add("first-visit")}catch(e){d.classList.add("first-visit")}setTimeout(function(){d.classList.remove("is-loading")},4500)})();</script>
 </head>
 <body data-page="index">
 <div id="site-header"></div>
@@ -27,11 +29,15 @@
 <main>
   <!-- ============ HERO ============ -->
   <section class="hero">
-    <div class="hero-media">
-      <video data-autoplay autoplay muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1784637729389-f24e1d2a8b22?auto=format&fit=crop&w=1800&q=70">
-        <source src="https://assets.mixkit.co/videos/49845/49845-720.mp4" type="video/mp4">
-      </video>
+    <div class="hero-slides" data-hero-slider data-interval="8000">
+      <div class="hero-slide is-active" data-caption="Riyadh — Business Hub">
+        <video autoplay muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1784637729389-f24e1d2a8b22?auto=format&fit=crop&w=1800&q=70"><source src="https://assets.mixkit.co/videos/49845/49845-720.mp4" type="video/mp4"></video>
+      </div>
+      <div class="hero-slide" data-caption="Kingdom of Saudi Arabia"><img src="https://images.unsplash.com/photo-1694018359679-49465b4c0d61?auto=format&fit=crop&w=1920&q=72" alt="" loading="lazy"></div>
+      <div class="hero-slide" data-caption="Global Trade Routes"><img src="https://images.unsplash.com/photo-1678182451047-196f22a4143e?auto=format&fit=crop&w=1920&q=72" alt="" loading="lazy"></div>
+      <span class="slide-sweep" aria-hidden="true"></span>
     </div>
+    <div class="slide-caption" aria-hidden="true"><span>Riyadh — Business Hub</span></div>
     <div class="map-bg"><canvas data-worldmap data-dot-alpha="0.22"></canvas></div>
     <div class="container hero-grid">
       <div class="hero-content">
@@ -51,9 +57,9 @@
     </div>
     <div class="hero-foot">
       <div class="container">
-        <span><b>01</b> Research &amp; Sourcing</span>
-        <span><b>02</b> Qualification &amp; Outreach</span>
-        <span><b>03</b> Meetings &amp; Follow-up</span>
+        <button class="slide-ctl" type="button"><b>01</b> Research &amp; Sourcing</button>
+        <button class="slide-ctl" type="button"><b>02</b> Qualification &amp; Outreach</button>
+        <button class="slide-ctl" type="button"><b>03</b> Meetings &amp; Follow-up</button>
         <span class="scroll-cue" aria-hidden="true"></span>
       </div>
     </div>
@@ -441,8 +447,9 @@
 </main>
 
 <div id="site-footer"></div>
-<script src="../assets/js/land.js" defer></script>
-<script src="../assets/js/geo.js" defer></script>
-<script src="../assets/js/main.js" defer></script>
+<script src="../assets/js/land.js?v=4" defer></script>
+<script src="../assets/js/geo.js?v=4" defer></script>
+<script src="../assets/js/motion.js?v=4" defer></script>
+<script src="../assets/js/main.js?v=4" defer></script>
 </body>
 </html>

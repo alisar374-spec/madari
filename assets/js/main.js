@@ -390,7 +390,7 @@
   buildFooter();
   fillIcons();
   preselect();
-  reveal();
+  if (!window.MADARI_MOTION) reveal();
   videos();
   forms();
 })();
