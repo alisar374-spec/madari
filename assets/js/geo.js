@@ -78,9 +78,12 @@
     else window.addEventListener("resize", resize);
     return { ctx: ctx, s: state };
   }
-  function loop(canvas, draw) {
-    var visible = true, raf = 0, t0 = performance.now();
-    function frame(now) { draw(Math.max(0, (now - t0) / 1000)); if (visible && !reduce) raf = requestAnimationFrame(frame); }
+  function loop(canvas, draw, fps) {
+    var visible = true, raf = 0, t0 = performance.now(), last = 0, gap = 1000 / (fps || 60) - 2;
+    function frame(now) {
+      if (now - last >= gap) { last = now; draw(Math.max(0, (now - t0) / 1000)); }
+      if (visible && !reduce) raf = requestAnimationFrame(frame);
+    }
     if ("IntersectionObserver" in window) {
       new IntersectionObserver(function (en) {
         visible = en[0].isIntersecting;
@@ -299,7 +302,7 @@
       ctx.fillStyle = "rgb(" + GOLD_LIGHT + ")"; ctx.beginPath(); ctx.arc(hub[0], hub[1], 4, 0, Math.PI * 2); ctx.fill();
     }
 
-    if (reduce) draw(0); else loop(canvas, draw);
+    if (reduce) draw(0); else loop(canvas, draw, 30);
   }
 
   /* =========================================================

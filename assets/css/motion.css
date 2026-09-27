@@ -237,7 +237,7 @@ html.lenis-on body { height: auto; }
 .lenis.lenis-stopped { overflow: hidden; }
 
 /* scale-up containers keep their corners soft while opening */
-.cta-band, .dual { will-change: clip-path; }
+
 .hero .globe-wrap { transition: opacity 1s var(--ease); }
 .slide-caption span { transition: opacity .35s; }
 @media (prefers-reduced-motion: reduce) {
