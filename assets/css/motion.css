@@ -161,9 +161,20 @@ html[dir="ltr"] .gold-rule { transform-origin: left; }
 .reveal:not(.in) .eyebrow::before, .eyebrow.reveal:not(.in)::before { width: 0; }
 
 /* ---------- Image reveals ---------- */
-.mx-img { clip-path: inset(0 0 0 100%); transition: clip-path 1.3s cubic-bezier(.77, 0, .18, 1); transition-delay: calc(var(--i, 0) * 110ms); }
-html[dir="ltr"] .mx-img { clip-path: inset(0 100% 0 0); }
-.mx-img.in, html[dir="ltr"] .mx-img.in { clip-path: inset(0 0 0 0); }
+/* The element itself is never clipped (a fully clipped element is invisible to IntersectionObserver),
+   a navy cover with a gold edge slides off instead. */
+.mx-img:not(.media-frame) { position: relative; }
+.sector-row.mx-img, .pilot-gallery.mx-img { overflow: hidden; }
+.mx-cover {
+  position: absolute; inset: 0; z-index: 6; pointer-events: none;
+  background: var(--navy-800); transform-origin: left center;
+  transition: transform 1.15s cubic-bezier(.77, 0, .18, 1); transition-delay: calc(var(--i, 0) * 110ms);
+}
+html[dir="ltr"] .mx-cover { transform-origin: right center; }
+.mx-cover::after { content: ""; position: absolute; top: 0; bottom: 0; right: 0; width: 2px; background: var(--gold-light); box-shadow: 0 0 18px 2px rgba(232, 204, 128, .45); }
+html[dir="ltr"] .mx-cover::after { right: auto; left: 0; }
+.mx-img.in > .mx-cover { transform: scaleX(0); }
+.bg-sand .mx-cover, .bg-white .mx-cover { background: var(--navy-700); }
 .mx-img img, .mx-img video { scale: 1.2; transition: scale 1.8s var(--ease), transform 1.2s var(--ease), filter .6s; transition-delay: calc(var(--i, 0) * 110ms); }
 .mx-img.in img, .mx-img.in video { scale: 1; }
 .media-frame.mx-img { clip-path: none; }
@@ -241,7 +252,7 @@ html.lenis-on body { height: auto; }
 .hero .globe-wrap { transition: opacity 1s var(--ease); }
 .slide-caption span { transition: opacity .35s; }
 @media (prefers-reduced-motion: reduce) {
-  html::before, html::after, body::after, .loader-line, .loader-word { display: none !important; }
+  html::before, html::after, body::after, .loader-line, .loader-word, .mx-cover { display: none !important; }
   .reveal, .w > span, .mx-img, .mx-img img, .mx-img video, .media-frame.mx-img > img { opacity: 1 !important; transform: none !important; clip-path: none !important; scale: 1 !important; }
   .gold-rule { transform: none; }
   .hero-slide.is-active > *, .page-hero .bg > * { animation: none; }

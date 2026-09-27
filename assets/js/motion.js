@@ -125,7 +125,13 @@
       if (kids.length === 2) { kids[0].classList.add("from-start"); kids[1].classList.add("from-end"); }
     });
     // image wipes
-    each(".media-frame, .service-card, .sector, .sector-row, .detail-aside, .pilot-gallery > *", function (el) { el.classList.add("mx-img"); });
+    each(".media-frame, .service-card, .sector, .sector-row, .detail-aside, .pilot-gallery", function (el) {
+      el.classList.add("mx-img");
+      if (!el.classList.contains("media-frame") && !reduce) {
+        var cover = document.createElement("span"); cover.className = "mx-cover"; cover.setAttribute("aria-hidden", "true");
+        el.appendChild(cover);
+      }
+    });
     // parallax only on the top hero backgrounds (cheap, one layer)
     each(".hero-slides, .hero-media", function (el) { el.setAttribute("data-px", "hero"); });
     each(".page-hero .bg", function (el) { el.setAttribute("data-px", "hero"); });
