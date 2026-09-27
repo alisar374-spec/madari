@@ -150,17 +150,36 @@
   function reveals() {
     var targets = document.querySelectorAll(".reveal, .mx-img, .gold-rule");
     if (reduce || !("IntersectionObserver" in window)) { Array.prototype.forEach.call(targets, function (t) { t.classList.add("in"); }); return; }
+    var pending = Array.prototype.slice.call(targets);
+    function show(el) {
+      if (el.classList.contains("in")) return;
+      // reveal once, from the side the visitor is coming from, then stay put
+      el.style.setProperty("--from", (dir >= 0 ? 36 : -36) + "px");
+      el.classList.add("in");
+      io.unobserve(el);
+    }
     var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        var el = en.target;
-        if (!en.isIntersecting) return;
-        // reveal once, from the side the visitor is coming from, then stay put
-        el.style.setProperty("--from", (dir >= 0 ? 36 : -36) + "px");
-        requestAnimationFrame(function () { el.classList.add("in"); });
-        io.unobserve(el);
-      });
+      entries.forEach(function (en) { if (en.isIntersecting) show(en.target); });
     }, { threshold: 0.1, rootMargin: "0px 0px -4% 0px" });
-    Array.prototype.forEach.call(targets, function (t) { io.observe(t); });
+    pending.forEach(function (t) { io.observe(t); });
+
+    // safety net: anything the visitor has reached or scrolled past (fast flicks, anchor jumps)
+    // is revealed even if the observer skipped it
+    var sweepQueued = false;
+    function sweep() {
+      sweepQueued = false;
+      var vh = window.innerHeight;
+      pending = pending.filter(function (el) {
+        if (el.classList.contains("in")) return false;
+        if (el.getBoundingClientRect().top < vh * 0.96) { show(el); return false; }
+        return true;
+      });
+      if (!pending.length) window.removeEventListener("scroll", queue);
+    }
+    function queue() { if (!sweepQueued) { sweepQueued = true; setTimeout(sweep, 180); } }
+    window.addEventListener("scroll", queue, { passive: true });
+    window.addEventListener("hashchange", queue);
+    setTimeout(sweep, 1200);
   }
 
   /* ---------- 5. Hero slider ---------- */

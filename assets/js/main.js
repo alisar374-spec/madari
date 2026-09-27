@@ -151,7 +151,10 @@
       return '<a href="' + href(n[0]) + '"' + (n[0] === page ? ' class="active"' : "") + ' style="transition-delay:' + (0.05 + i * 0.04).toFixed(2) + 's"><i>' + String(i + 1).padStart(2, "0") + "</i>" + n[1] + "</a>";
     }).join("");
 
+    var mainEl = document.querySelector("main");
+    if (mainEl && !mainEl.id) mainEl.id = "main";
     mount.outerHTML =
+      '<a class="skip-link" href="#main">' + (lang === "ar" ? "تخطَّ إلى المحتوى" : "Skip to content") + "</a>" +
       '<div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>' +
       '<header class="site-header' + solid + '" id="top-header">' +
         '<div class="topbar"><div class="container">' +
@@ -329,6 +332,19 @@
     els.forEach(function (e) { io.observe(e); });
   }
 
+  /* ---------- Background videos: only download on larger screens with data to spare ---------- */
+  function loadVideos() {
+    var conn = navigator.connection || {};
+    var light = window.matchMedia("(max-width: 760px)").matches || conn.saveData || /(^|-)2g$/.test(conn.effectiveType || "") ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    document.querySelectorAll("video").forEach(function (v) {
+      var sources = v.querySelectorAll("source[data-src]");
+      if (!sources.length || light) return; // poster image stays visible on phones / data-saver
+      sources.forEach(function (s) { s.src = s.getAttribute("data-src"); });
+      v.load(); // autoplay / the visibility observer below take it from here
+    });
+  }
+
   /* ---------- Hero video: pause when hidden, respect reduced motion ---------- */
   function videos() {
     var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -391,6 +407,7 @@
   fillIcons();
   preselect();
   if (!window.MADARI_MOTION) reveal();
+  loadVideos();
   videos();
   forms();
 })();

@@ -81,7 +81,7 @@
   function loop(canvas, draw, fps) {
     var visible = true, raf = 0, t0 = performance.now(), last = 0, gap = 1000 / (fps || 60) - 2;
     function frame(now) {
-      if (now - last >= gap) { last = now; draw(Math.max(0, (now - t0) / 1000)); }
+      if (now - last >= gap) { last = now; var t = (now - t0) / 1000; draw(t > 0 && isFinite(t) ? t : 0); }
       if (visible && !reduce) raf = requestAnimationFrame(frame);
     }
     if ("IntersectionObserver" in window) {
@@ -177,8 +177,8 @@
         }
         ctx.strokeStyle = "rgba(" + GOLD + ",0.55)"; ctx.lineWidth = 1; ctx.stroke();
 
-        var prog = ((t / r.dur) + r.phase) % 1;
-        var idx = Math.floor(prog * (r.pts.length - 1));
+        var prog = (((t / r.dur) + r.phase) % 1 + 1) % 1;
+        var idx = Math.min(r.pts.length - 1, Math.max(0, Math.floor(prog * (r.pts.length - 1)) || 0));
         var pp = project(r.pts[idx], rot);
         if (pp[2] > -0.1) {
           var gx = cx + pp[0] * R, gy = cy - pp[1] * R;
