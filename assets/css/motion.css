@@ -215,6 +215,9 @@ html[dir="rtl"] .reveal.from-end { --fx: -70px; }
 html[dir="ltr"] .reveal.from-start { --fx: -70px; }
 html[dir="ltr"] .reveal.from-end { --fx: 70px; }
 
+/* mobile: rise only (no sideways travel on narrow screens) */
+@media (max-width: 760px) { html[dir] .reveal.from-start, html[dir] .reveal.from-end { --fx: 0px; --from: 28px; } }
+
 /* unified transitions when several effects share one element */
 .reveal, .mx-img {
   transition-property: opacity, transform, clip-path;
