@@ -24,7 +24,7 @@
       nav: [
         ["index", "الرئيسية"], ["about", "من نحن"], ["services", "الخدمات"], ["packages", "الباقات"],
         ["sectors", "القطاعات"], ["foreign-companies", "دخول السوق السعودي"], ["saudi-companies", "الشركات السعودية"],
-        ["exhibitions", "المعارض"], ["contact", "تواصل معنا"]
+        ["exhibitions", "المعارض"], ["interactive-experiences", "التجارب التفاعلية"], ["contact", "تواصل معنا"]
       ],
       cta: "ابدأ مشروعك",
       langLabel: "EN",
@@ -51,7 +51,7 @@
       nav: [
         ["index", "Home"], ["about", "About"], ["services", "Services"], ["packages", "Packages"],
         ["sectors", "Sectors"], ["foreign-companies", "Market Entry"], ["saudi-companies", "Saudi Companies"],
-        ["exhibitions", "Exhibitions"], ["contact", "Contact"]
+        ["exhibitions", "Exhibitions"], ["interactive-experiences", "Interactive Experiences"], ["contact", "Contact"]
       ],
       cta: "Start Your Project",
       langLabel: "ع",
@@ -98,6 +98,13 @@
     invest: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg>',
     info: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg>',
     check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.5l3 3 6-6.5"/></svg>',
+    screen: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="6" y="2.5" width="12" height="16" rx="1.5"/><path d="M10 21.5h4M12 18.5v3M9.5 9.5l2 2 3.5-4"/></svg>',
+    target: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></svg>',
+    spark: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M6 18l2.5-2.5M15.5 8.5L18 6"/></svg>',
+    data: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><ellipse cx="12" cy="5.5" rx="7" ry="2.5"/><path d="M5 5.5v6c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5v-6M5 11.5v6c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5v-6"/></svg>',
+    time: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>',
+    book: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5.5A2.5 2.5 0 016.5 3H20v15H6.5A2.5 2.5 0 004 20.5z"/><path d="M4 20.5A2.5 2.5 0 006.5 23H20v-5"/></svg>',
+    stage: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 20h18M5 20v-5h14v5M8 15V9l4-4 4 4v6"/></svg>',
     arrow: '<svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8h11M9 4l4 4-4 4"/></svg>'
   };
 
@@ -111,7 +118,8 @@
       drop: [
         ["foreign-companies", "دخول السوق السعودي", "للشركات الدولية الراغبة في الوصول إلى المملكة", "plane"],
         ["saudi-companies", "الشركات السعودية", "للوصول إلى شركاء وموردين دوليين", "handshake"],
-        ["exhibitions", "المعارض والفعاليات", "تحويل المشاركة إلى فرص تجارية", "booth"]
+        ["exhibitions", "المعارض والفعاليات", "تحويل المشاركة إلى فرص تجارية", "booth"],
+        ["interactive-experiences", "التجارب التفاعلية", "تجارب تفاعلية للمعارض والفعاليات والحملات", "screen"]
       ],
       contact: ["contact", "تواصل معنا"],
       slogan: "من السوق السعودي إلى العالم، ومن العالم إلى السوق السعودي.",
@@ -123,7 +131,8 @@
       drop: [
         ["foreign-companies", "Saudi Market Entry", "For international companies entering the Kingdom", "plane"],
         ["saudi-companies", "Saudi Companies", "Reach international partners and suppliers", "handshake"],
-        ["exhibitions", "Exhibitions & Events", "Turn participation into opportunities", "booth"]
+        ["exhibitions", "Exhibitions & Events", "Turn participation into opportunities", "booth"],
+        ["interactive-experiences", "Interactive Experiences", "Interactive solutions for events and campaigns", "screen"]
       ],
       contact: ["contact", "Contact"],
       slogan: "From Saudi Arabia to the World, and from the World to Saudi Arabia.",
@@ -272,7 +281,7 @@
     var nav = T.nav;
     var li = function (pair) { var h = pair[0] === "index" ? "index.html" : pair[0] + ".html"; return '<li><a href="' + h + '">' + pair[1] + "</a></li>"; };
     var linksA = [nav[0], nav[1], nav[2], nav[3], nav[4]].map(li).join("");
-    var linksB = [nav[5], nav[6], nav[7], nav[8]].map(li).join("");
+    var linksB = nav.slice(5).map(li).join("");
     var year = new Date().getFullYear();
     mount.outerHTML =
       '<footer class="site-footer">' +
@@ -371,6 +380,13 @@
 
   /* ---------- Forms ---------- */
   function forms() {
+    // package buttons pre-select the project type in the request form
+    document.querySelectorAll("[data-project]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        var sel = document.querySelector('select[name="project_type"]');
+        if (sel) sel.value = b.getAttribute("data-project");
+      });
+    });
     document.querySelectorAll("form.js-form").forEach(function (form) {
       var status = form.querySelector(".form-status");
       form.addEventListener("submit", function (e) {
@@ -387,7 +403,7 @@
           .then(function (r) { return r.json(); })
           .then(function (res) {
             if (!res || !res.ok) throw new Error("send failed");
-            form.innerHTML = '<div class="form-success">' + icon("check") + "<h3>" + T.thanksTitle + "</h3><p class=\"muted\">" + T.thanks + "</p></div>";
+            form.innerHTML = '<div class="form-success">' + icon("check") + "<h3>" + T.thanksTitle + "</h3><p class=\"muted\">" + (form.getAttribute("data-thanks") || T.thanks) + "</p></div>";
             form.scrollIntoView({ behavior: "smooth", block: "center" });
           })
           .catch(function () {
