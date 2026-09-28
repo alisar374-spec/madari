@@ -811,3 +811,6 @@ html[dir="rtl"] .globe-wrap .globe-label { transform: translateX(50%); }
   .section-head { margin-bottom: 34px; }
   .hero .btn-row .btn { flex: 1 1 100%; }
 }
+/* hero-foot keeps its own room on short laptop screens */
+@media (min-width: 761px) { .hero { padding-bottom: 150px; } }
+@media (min-width: 761px) and (max-height: 780px) { .hero { padding-top: 120px; } .hero h1 { margin-bottom: 18px; } .hero .lead { margin-bottom: 28px; } .slide-caption { display: none; } }

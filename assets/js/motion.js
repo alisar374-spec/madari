@@ -256,10 +256,10 @@
       }
 
       if (heroContent && y < vh) {
-        var k = clamp(y / (vh * 0.85), 0, 1);
-        heroContent.style.transform = "translate3d(0," + (y * 0.18).toFixed(1) + "px,0)";
-        heroContent.style.opacity = (1 - k * 0.9).toFixed(3);
-        if (heroGlobe) heroGlobe.style.transform = "translate3d(0," + (y * 0.08).toFixed(1) + "px,0) scale(" + (1 - k * 0.12).toFixed(3) + ")";
+        // text stays in its place (no downward drift onto the slider bar); it only fades gently
+        var k = clamp(y / (vh * 0.9), 0, 1);
+        heroContent.style.opacity = (1 - k * 0.75).toFixed(3);
+        if (heroGlobe) heroGlobe.style.transform = "scale(" + (1 - k * 0.1).toFixed(3) + ")";
       }
 
       var speed = clamp(Math.abs(vel) / 10, 0, 2);
