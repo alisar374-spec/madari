@@ -905,3 +905,8 @@ html[dir="rtl"] .compare .mid span { transform: scaleX(-1); }
 .service-card--wide p { max-width: 62ch; }
 .service-card--wide img { object-position: center 35%; }
 @media (max-width: 640px) { .service-card--wide { min-height: 330px; } .service-card--wide h3 { font-size: 1.3rem; } }
+
+/* floating header capsule fits the screen on phones (width 100% + side margins overflowed) */
+@media (max-width: 760px) {
+  .site-header.scrolled .nav-wrap { width: auto; margin-inline: 12px; padding: 6px 8px; padding-inline-start: 14px; }
+}

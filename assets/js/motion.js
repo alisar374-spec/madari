@@ -300,7 +300,12 @@
       c.style.transform = "translate3d(" + x.toFixed(1) + "px," + y.toFixed(1) + "px,0)";
       raf = Math.abs(tx - x) + Math.abs(ty - y) > 0.3 ? requestAnimationFrame(loop) : 0;
     }
+    var wide = window.matchMedia("(min-width: 1024px)");
+    function rest() { c.classList.remove("label", "hot"); }
+    // the label must never sit stale over content: clear it while scrolling, and drop it on narrow layouts
+    window.addEventListener("scroll", rest, { passive: true });
     document.addEventListener("mousemove", function (e) {
+      if (!wide.matches) { c.classList.remove("on"); rest(); return; }
       tx = e.clientX; ty = e.clientY; c.classList.add("on");
       if (!raf) raf = requestAnimationFrame(loop);
       var t = e.target.closest && e.target.closest("[data-cursor]");
