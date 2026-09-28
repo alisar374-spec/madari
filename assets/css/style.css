@@ -910,3 +910,23 @@ html[dir="rtl"] .compare .mid span { transform: scaleX(-1); }
 @media (max-width: 760px) {
   .site-header.scrolled .nav-wrap { width: auto; margin-inline: 12px; padding: 6px 8px; padding-inline-start: 14px; }
 }
+
+/* =========================================================
+   Typography alignment: justified body text across the site
+   ========================================================= */
+main p, main .lead, .footer-brand p, .detail-grid li, .prose li, .sol-list span {
+  text-align: justify;
+  text-justify: inter-word;
+  text-wrap: pretty;
+  hyphens: none;
+}
+/* keep centered/short text centered */
+main .center p, main .center .lead, .section-head.center .lead, main p[style*="center"],
+main .step p, main .results-note, main .form-success p, main .hero-tagline, main .footer-slogan,
+main .media-badge span, main .tags span, main .phase li {
+  text-align: center;
+}
+@media (max-width: 1000px) { main .step p { text-align: start; } }
+/* headings: balanced lines, no single-word last line */
+h1, h2, h3, .display, .h2 { text-wrap: balance; }
+.lead { text-wrap: pretty; }
