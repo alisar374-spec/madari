@@ -941,3 +941,19 @@ h1, h2, h3, .display, .h2 { text-wrap: balance; }
 .feature .ico { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; background: var(--sand-100); margin-bottom: 20px; }
 .feature .ico svg { width: 26px; height: 26px; }
 .bg-white .feature .ico { background: var(--sand-100); }
+
+/* Why MADARI: compact layout (icon beside the title, tighter spacing) */
+#why.section { padding-block: clamp(64px, 8vw, 100px); }
+#why .section-head { margin-bottom: 40px; }
+#why .feature { display: grid; grid-template-columns: 52px 1fr; column-gap: 16px; align-items: start; padding: 26px 26px; }
+#why .feature .ico { grid-row: span 2; margin-bottom: 0; }
+#why .feature h3 { font-size: 1.12rem; margin: 2px 0 6px; align-self: center; }
+#why .feature p { grid-column: 2; font-size: .93rem; line-height: 1.75; }
+@media (max-width: 600px) {
+  #why.section { padding-block: 56px; }
+  #why .feature { padding: 20px 18px; grid-template-columns: 44px 1fr; column-gap: 14px; }
+  #why .feature .ico { width: 44px; height: 44px; }
+  #why .feature .ico svg { width: 22px; height: 22px; }
+  #why .feature .ico { grid-row: auto; }
+  #why .feature p { grid-column: 1 / -1; margin-top: 8px; text-align: start; }
+}
