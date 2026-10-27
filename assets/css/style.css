@@ -936,3 +936,8 @@ h1, h2, h3, .display, .h2 { text-wrap: balance; }
 
 /* large lead on narrow screens: justify would open wide gaps between words */
 @media (max-width: 640px) { main .hero .lead, main .page-hero .lead, main .dual-panel p, main .cta-band .lead { text-align: start; } .hero-tagline { border-radius: 18px; text-align: center; } }
+
+/* feature icons: fixed size (the <i> wrapper is inline, so its width was ignored and the SVG filled the card) */
+.feature .ico { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; background: var(--sand-100); margin-bottom: 20px; }
+.feature .ico svg { width: 26px; height: 26px; }
+.bg-white .feature .ico { background: var(--sand-100); }
