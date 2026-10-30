@@ -41,6 +41,7 @@
       rights: "جميع الحقوق محفوظة لمداري للربط التجاري بين الشركات المحلية والدولية.",
       location: "المملكة العربية السعودية",
       wa: "واتساب",
+      waText: "مرحباً مداري، أرغب بالتواصل معكم بخصوص خدماتكم.",
       sending: "جارٍ الإرسال…",
       thanksTitle: "تم استلام طلبك",
       thanks: "شكراً لتواصلك مع مداري. سيقوم فريقنا بمراجعة طلبك والتواصل معك لمناقشة الخطوات التالية.",
@@ -68,6 +69,7 @@
       rights: "All rights reserved. MADARI – International Business Linkage.",
       location: "Kingdom of Saudi Arabia",
       wa: "WhatsApp",
+      waText: "Hello MADARI, I would like to get in touch about your services.",
       sending: "Sending…",
       thanksTitle: "Request received",
       thanks: "Thank you for contacting MADARI. Our team will review your request and get back to you to discuss the next steps.",
@@ -326,6 +328,11 @@
       if (k === "email") { el.textContent = CONTACT.email; el.href = "mailto:" + CONTACT.email; }
       if (k === "phone") { el.textContent = CONTACT.phoneDisplay; el.href = CONTACT.phoneHref; }
       if (k === "whatsapp") { el.href = CONTACT.whatsapp; }
+    });
+    // Pre-filled WhatsApp text: tells the Claude assistant and /admin which page the chat came from.
+    var waMsg = T.waText + "\n(madari.com.sa" + location.pathname + ")";
+    document.querySelectorAll('a[href^="' + CONTACT.whatsapp + '"]').forEach(function (el) {
+      el.href = CONTACT.whatsapp + "?text=" + encodeURIComponent(waMsg);
     });
   }
 

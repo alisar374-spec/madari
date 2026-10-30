@@ -4,9 +4,17 @@ Options -Indexes
 ErrorDocument 404 /404.html
 
 # Repository files are not part of the website
-<FilesMatch "\.(md|ps1|log|gitignore)$">
+<FilesMatch "\.(md|ps1|log|gitignore|sql|json|lock)$">
   Require all denied
 </FilesMatch>
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # Backend code and SQL are never served directly
+  RewriteRule ^(lib|supabase|vendor)(/|$) - [F,L]
+  # WhatsApp Cloud API webhook
+  RewriteRule ^api/whatsapp/webhook/?$ api/whatsapp/webhook.php [L,QSA]
+</IfModule>
 
 AddType font/ttf .ttf
 AddType image/webp .webp

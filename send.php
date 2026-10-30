@@ -58,6 +58,33 @@ if ($data['Name / الاسم'] === '' || $data['Company / الشركة'] === '' 
     exit;
 }
 
+// Also keep the request in Supabase for the /admin dashboard (skipped if not configured).
+try {
+    require_once __DIR__ . '/lib/bootstrap.php';
+    if ((string) cfg('supabase_url') !== '' && (string) cfg('supabase_service_key') !== '') {
+        $details = [];
+        foreach (['sector', 'package', 'target_market', 'partner_type', 'company_type', 'project_type', 'goal', 'event_date', 'budget', 'timeline', 'source', 'description'] as $k) {
+            if (field($k) !== '') {
+                $details[$k] = field($k, 5000);
+            }
+        }
+        sb_insert('leads', [
+            'form'    => field('form', 60),
+            'name'    => field('name', 200),
+            'company' => field('company', 200),
+            'email'   => $email,
+            'phone'   => field('phone', 60),
+            'country' => field('country', 120),
+            'service' => field('service', 120),
+            'page'    => field('page', 200),
+            'lang'    => field('lang', 5),
+            'details' => $details,
+        ]);
+    }
+} catch (\Throwable $e) {
+    // The email below is the primary channel; never fail the form because of the dashboard.
+}
+
 $lines = [];
 foreach ($data as $label => $value) {
     if ($value !== '') {
